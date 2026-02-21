@@ -25,6 +25,7 @@ import React from "react";
 import ChildA from "./components/ChildA";
 import FounderContext from "./context/Founder";
 import PersonContext from "./context/person";
+import UserContext from "./context/users";
 const App = () => {
   return (
     <div>
@@ -37,11 +38,14 @@ const App = () => {
         }}
       >
         <h2>Parent Comp</h2>
-        <FounderContext.Provider value="Jordan Walke">
+        <UserContext.Provider value="Rohit Sharma">
+          <FounderContext.Provider value="Jordan Walke">
           <PersonContext.Provider value="Virat Kohli">
             <ChildA/>
           </PersonContext.Provider>
         </FounderContext.Provider>
+        </UserContext.Provider>
+        
       </div>
     </div>
   );
