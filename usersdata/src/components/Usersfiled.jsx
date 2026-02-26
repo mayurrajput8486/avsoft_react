@@ -24,9 +24,9 @@ const Usersfiled = ({ register }) => {
   const validateInputFiled = () => {
     let newError = {};
 
-    if (!/^[A-Za-z\s]{2,10}$/.test(formData.fullName)) {
+    if (!/^[A-Za-z\s]{2,}$/.test(formData.fullName)) {
       ///^[A-Za-z\s]{2,}+$/.test('Virat')
-      newError.fullName = "Enter Valid FullName minimum 2 character and maximum 10 required";
+      newError.fullName = "Enter Valid FullName minimum 2 character required";
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {

@@ -11,6 +11,7 @@ const Usersdata = ({userDetails}) => {
                     <th>Email</th>
                     <th>Username</th>
                     <th>Password</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +24,10 @@ const Usersdata = ({userDetails}) => {
                                 <td>{user.email}</td>
                                 <td>{user.username}</td>
                                 <td>{user.password}</td>
+                                <td>
+                                    <button className='btn btn-danger'>Delete</button>
+                                    <button className='btn btn-warning'>Edit</button>
+                                </td>
                             </tr>
                         )
                     })
