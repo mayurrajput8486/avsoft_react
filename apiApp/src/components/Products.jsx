@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
@@ -7,12 +7,12 @@ const Products = () => {
   const [loading, setLoading] = useState(false);
   //error
   const [error, setError] = useState("");
+
+
   /* Features - search, filter, sort */
   const [search, setSearch] = useState("");
-  //to store the category we use useState () hook
-  const [categories, setCategories] = useState([]);
   //to change the data accroding to the selected category
-  const [category, setCategory] = useState("");
+  const [selectedCategory, setSelctedCategory] = useState("");
   //for sorting - high to low and low to high
   const [sortprice, setsortPrice] = useState("");
 
@@ -25,15 +25,8 @@ const Products = () => {
       const response = await axios.get(baseUrl);
       //console.log(response)
       const result = response.data;
-      //console.log(result.products);
+      console.log(result.products);
       setProducts(result.products);
-
-      //separate unique category
-      const uniqueCategories = [
-        ...new Set(result.products.map((prod) => prod.category)),
-      ];
-      //console.log(uniqueCategories)
-      setCategories(uniqueCategories);
     } catch (error) {
       setError("Failed to get products details, check the url once !!!");
     } finally {
@@ -44,6 +37,22 @@ const Products = () => {
   useEffect(() => {
     getProductData();
   }, []);
+
+  //to get all categories 
+  const uniqueCategories = useMemo(()=>{
+    return [...new Set(products.map((prod)=> prod.category))]
+  },[products])
+  console.log(uniqueCategories)
+
+  //Filter + Sorting
+  const filterSortProductsData = useMemo(()=>{
+    let prodData = [...products]
+
+    if(selectedCategory){
+      prodData.filter((prod)=>prod.category === selectedCategory)
+    }
+  },[products])
+  
 
   /* bootstrap version spinner - install bootstrap package, import bootstrap file  */
   /* 
@@ -70,9 +79,12 @@ const Products = () => {
         />
 
         {/* Filter products on category */}
-        <select className="border-2 p-2 rounded-2xl w-50 text-blue-400">
+        <select 
+          className="border-2 p-2 rounded-2xl w-50 text-blue-400" 
+          value={selectedCategory}
+          onChange={(e)=>setSelctedCategory(e.target.value)}>
           <option value="">All</option>
-          {categories.map((c, index) => {
+          {uniqueCategories.map((c, index) => {
             return (
               <option key={index} value={c}>
                 {c}
@@ -100,7 +112,8 @@ const Products = () => {
           </tr>
         </thead>
         <tbody>
-          {products.map((product) => {
+          {
+          filterSortProductsData.map((product) => {
             return (
               <tr key={product.id}>
                 <td className="border-2">{product.id}</td>
