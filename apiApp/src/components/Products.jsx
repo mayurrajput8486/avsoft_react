@@ -8,13 +8,13 @@ const Products = () => {
   //error
   const [error, setError] = useState("");
   /* Features - search, filter, sort */
-  const [search, setSearch] = useState('')
+  const [search, setSearch] = useState("");
   //to store the category we use useState () hook
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   //to change the data accroding to the selected category
-  const [category, setCategory] = useState('')
+  const [category, setCategory] = useState("");
   //for sorting - high to low and low to high
-  const [sortprice, setsortPrice] = useState('')
+  const [sortprice, setsortPrice] = useState("");
 
   const baseUrl = "https://dummyjson.com/products";
 
@@ -28,10 +28,12 @@ const Products = () => {
       //console.log(result.products);
       setProducts(result.products);
 
-      //separate unique category 
-      const uniqueCategories = [...new Set(result.products.map((prod)=>prod.category))]
+      //separate unique category
+      const uniqueCategories = [
+        ...new Set(result.products.map((prod) => prod.category)),
+      ];
       //console.log(uniqueCategories)
-      setCategories(uniqueCategories)
+      setCategories(uniqueCategories);
     } catch (error) {
       setError("Failed to get products details, check the url once !!!");
     } finally {
@@ -56,9 +58,10 @@ const Products = () => {
   if (error) return <h3 style={{ color: "red" }}>{error}</h3>;
   return (
     <div>
-      <h2 className="text-center text-2xl font-semibold mt-3 text-blue-500">Product Details</h2>
+      <h2 className="text-center text-2xl font-semibold mt-3 text-blue-500">
+        Product Details
+      </h2>
       <div className="mx-5 mb-5 flex gap-2 bg-black p-3 text-white rounded-2xl justify-center">
-
         {/* For search the products */}
         <input
           type="text"
@@ -69,18 +72,18 @@ const Products = () => {
         {/* Filter products on category */}
         <select className="border-2 p-2 rounded-2xl w-50 text-blue-400">
           <option value="">All</option>
-          {
-            categories.map((c, index)=>{
-              return(
-                <option key={index} value={c}>{c}</option>
-              )
-            })
-          }
+          {categories.map((c, index) => {
+            return (
+              <option key={index} value={c}>
+                {c}
+              </option>
+            );
+          })}
         </select>
 
         {/* Sort data accriding to price */}
         <select className="border-2 p-2 rounded-2xl w-50">
-          <option>Sorting</option>
+          <option value="">Sort</option>
         </select>
       </div>
       <table className="border-2 table-auto mx-5 text-center">
@@ -102,7 +105,12 @@ const Products = () => {
               <tr key={product.id}>
                 <td className="border-2">{product.id}</td>
                 <td className="border-2">
-                  <img src={product.thumbnail} alt={product.title} height="150px" loading="lazy" />
+                  <img
+                    src={product.thumbnail}
+                    alt={product.title}
+                    height="150px"
+                    loading="lazy"
+                  />
                 </td>
                 <td className="border-2">{product.title}</td>
                 <td className="border-2">{product.category}</td>
