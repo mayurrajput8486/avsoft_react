@@ -2,7 +2,11 @@
 const Pagination = ({currentPage, totalPages, setCurrentPage}) => {
 
     //convert numbers into array
-    //const pageNumbers = [...Array(totalPages)].map()
+    const pageNumbers = [...Array(totalPages)].map((a,index)=>{
+        return index + 1
+    })
+
+    console.log(pageNumbers)
 
     const disbaledStyle = {
         color : 'white',
@@ -20,6 +24,22 @@ const Pagination = ({currentPage, totalPages, setCurrentPage}) => {
         borderRadius : '10px'
     }
 
+    const baseStyled = {
+        color : 'white',
+        fontWeight : 'bold',
+        backgroundColor : 'black',
+        padding : '10px',
+        borderRadius : '10px'
+    }
+
+    const activeStyled = {
+        color : 'white',
+        fontWeight : 'bold',
+        backgroundColor : 'red',
+        padding : '10px',
+        borderRadius : '10px'
+    }
+
   return (
     <div className='flex gap-5 justify-center text-2xl mt-4'>
         <button
@@ -29,9 +49,32 @@ const Pagination = ({currentPage, totalPages, setCurrentPage}) => {
         >
             Prev
         </button>
-        <button>
-            {currentPage} / {totalPages}
-        </button>
+        {/* 
+            <button>
+                {currentPage} / {totalPages}
+            </button> 
+        */}
+
+        {/* To provide page number button we have to iterate the pageNumber array with the help of map() */}
+       
+        {
+            pageNumbers.map((page)=>{
+                return(
+                    <button 
+                        key={page}
+                        onClick={()=>setCurrentPage(page)}
+                        style={{
+                            ...baseStyled,  //basic styled object
+                            ...(currentPage === page ? activeStyled : baseStyled) //for current active page
+                        }}
+                    >
+                            {page}
+                    </button>
+                )
+            })
+        }
+
+
         <button
             disabled={currentPage === totalPages}
             onClick={()=>setCurrentPage(currentPage + 1)}
