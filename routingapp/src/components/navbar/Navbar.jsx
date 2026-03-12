@@ -57,6 +57,15 @@ const Navbar = () => {
                   Career
                 </NavLink>
               </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-light fs-4"
+                  aria-current="page"
+                  to="products"
+                >
+                  Products
+                </NavLink>
+              </li>
             </ul>
             <form className="d-flex" role="search">
               <input
