@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import './Navbar.css'
 const Navbar = () => {
   return (
     <div>
@@ -23,7 +24,7 @@ const Navbar = () => {
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <NavLink
-                  className="nav-link active text-light fs-4"
+                  className="nav-link text-light fs-4"
                   aria-current="page"
                   to="home"
                 >

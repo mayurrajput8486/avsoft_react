@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 const Products = () => {
   const { products, loading, error } = useProducts();
@@ -21,9 +22,10 @@ const Products = () => {
                   Price - ${item.price}
                 </p>
                 <div className="text-center">
-                  <a href="#" className="btn btn-primary">
+                  <Link to={`/products/${item.id}`} className="btn btn-primary">
                     View Details
-                  </a>
+                  </Link>
+                  {/* NavLink provide active class and Link not provide active cla */}
                 </div>
               </div>
             </div>

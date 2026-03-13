@@ -1,37 +1,50 @@
-import React from "react";
-import useProducts from "../../hooks/useProducts";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import useProductDetails from "../../hooks/useProductDetails";
+
 const ProductDetails = () => {
-
   const { id } = useParams();
-  const { products, loading, error } = useProducts();
+  const navigate = useNavigate()
 
-  //logic to find specific product data on the basis of product id
+  const { products, loading, error } = useProductDetails(id);
+  console.log(products);
 
-  const product = products.find((x) => x.id === id);
-  console.log(product)
-
-  if (loading) return <h2>Please wait....</h2>;
-  if (error) return <h2>{error}</h2>;
-
+  if (loading)
+    return (
+      <h2 className="text-center text-primary mt-3">
+        Please wait getting product details....
+      </h2>
+    );
+  if (error) return <h2 className="text-center text-primary mt-3">{error}</h2>;
+  if (!products)
+    return (
+      <h2 className="text-center text-primary mt-3">Product Not Found...</h2>
+    );
   return (
     <div>
       <h3 className="text-center mt-3">Product Details</h3>
 
-      <div className="card" style={{width : '18rem'}}>
-        <img src={product.thumbnail} className="card-img-top" alt="..." />
+      <div className="card mx-auto" style={{ width: "18rem" }}>
+        <img
+          src={products.thumbnail}
+          className="card-img-top"
+          alt={products.title}
+        />
         <div className="card-body">
-          <h5 className="card-title">{product.title}</h5>
-          <p className="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card’s content.
-          </p>
+          <h5 className="card-title text-center">{products.title}</h5>
+          <p className="card-text">{products.description}</p>
         </div>
         <ul className="list-group list-group-flush">
-          <li className="list-group-item">An item</li>
-          <li className="list-group-item">A second item</li>
-          <li className="list-group-item">A third item</li>
+          <li className="list-group-item">Rating - {products.rating}</li>
+          <li className="list-group-item">
+            Warranty Info - {products.warrantyInformation}
+          </li>
+          <li className="list-group-item">
+            Shipping Info - {products.shippingInformation}
+          </li>
         </ul>
+      </div>
+      <div className="text-center">
+        <button className="btn btn-warning mt-3" onClick={()=>navigate('/products')}>Back to Product Page</button>
       </div>
     </div>
   );
