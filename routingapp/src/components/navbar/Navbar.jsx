@@ -6,7 +6,7 @@ const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-lg bg-dark">
         <div className="container-fluid">
-          <NavLink className="navbar-brand text-info fs-3 fw-bold" to="home">
+          <NavLink className="navbar-brand text-info fs-3 fw-bold" to="/home">
             Amit IT
           </NavLink>
           <button
@@ -26,7 +26,7 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-light fs-4"
                   aria-current="page"
-                  to="home"
+                  to="/home"
                 >
                   Home
                 </NavLink>
@@ -35,7 +35,7 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-light fs-4"
                   aria-current="page"
-                  to="about"
+                  to="/about"
                 >
                   About
                 </NavLink>
@@ -44,7 +44,7 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-light fs-4"
                   aria-current="page"
-                  to="register"
+                  to="/register"
                 >
                   Register
                 </NavLink>
@@ -53,7 +53,7 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-light fs-4"
                   aria-current="page"
-                  to="career"
+                  to="/career"
                 >
                   Career
                 </NavLink>
@@ -62,9 +62,18 @@ const Navbar = () => {
                 <NavLink
                   className="nav-link text-light fs-4"
                   aria-current="page"
-                  to="products"
+                  to="/products"
                 >
                   Products
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link text-light fs-4"
+                  aria-current="page"
+                  to="/youtube"
+                >
+                  YouTube
                 </NavLink>
               </li>
             </ul>
