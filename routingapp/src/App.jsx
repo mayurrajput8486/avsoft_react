@@ -24,11 +24,13 @@ const Music = lazy(() => import("./components/pages/Music"));
 const Technology = lazy(() => import("./components/pages/Technology"));
 const News = lazy(() => import("./components/pages/News"));
 const ErrorPage = lazy(() => import("./components/pages/ErrorPage"));
+const ErrorBoundary = lazy(()=>import('./components/ErrorBoundary'))
 
 const App = () => {
   return (
     <div>
       <Navbar />
+      <ErrorBoundary>
       <Suspense fallback={<h2>Loading......</h2>}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -46,6 +48,7 @@ const App = () => {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Suspense>
+      </ErrorBoundary>
     </div>
   );
 };
