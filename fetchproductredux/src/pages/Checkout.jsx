@@ -24,12 +24,12 @@ const Checkout = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center py-10 px-4">
       <div className="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-3xl">
 
-        {/* Header */}
+      
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Checkout
         </h2>
 
-        {/* Summary Section */}
+     
         <div className="bg-gray-50 p-6 rounded-lg border mb-8">
           <h3 className="text-xl font-semibold mb-3">Order Summary</h3>
 
@@ -47,7 +47,7 @@ const Checkout = () => {
           </div>
         </div>
 
-        {/* Payment Options */}
+       
         <div className="mb-8">
           <h3 className="text-xl font-semibold mb-3">Choose Payment Method</h3>
 
@@ -70,7 +70,7 @@ const Checkout = () => {
           </div>
         </div>
 
-        {/* Proceed Button */}
+      
         <button
           className="w-full py-4 bg-blue-600 text-white rounded-xl text-lg font-semibold 
                      hover:bg-blue-700 transition transform hover:scale-105"

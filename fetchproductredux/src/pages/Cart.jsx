@@ -64,14 +64,14 @@ const Cart = () => {
             key={item.id}
             className="bg-white shadow-md rounded-xl p-5 mt-6 flex flex-col md:flex-row md:items-center justify-between"
           >
-            {/* Left Section */}
+        
             <div>
               <h4 className="text-2xl font-semibold">{item.title}</h4>
               <p className="text-gray-600 mt-1">Price: ₹{item.price}</p>
               <p className="text-gray-600 mt-1">Total: ₹{item.qty * item.price}</p>
             </div>
 
-            {/* Quantity Controls */}
+       
             <div className="flex items-center gap-3 mt-4 md:mt-0">
               <button
                 onClick={() => dispatch(decreaseQty(item.id))}
@@ -91,7 +91,7 @@ const Cart = () => {
                 +
               </button>
 
-              {/* Remove Button */}
+             
               <button
                 onClick={() => dispatch(removeFromCart(item.id))}
                 className="ml-4 text-red-500 hover:text-red-700 text-2xl transition"
@@ -103,7 +103,7 @@ const Cart = () => {
         ))}
       </div>
 
-      {/* Total Price */}
+    
       {cartItems.length > 0 && (
         <div className="mt-10 p-6 bg-white shadow-lg rounded-xl w-full max-w-3xl text-center">
           <h3 className="text-3xl font-bold">Total Amount: ${totalAmount.toFixed(2)}</h3>
