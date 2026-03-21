@@ -2,10 +2,9 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 const Navbar = () => {
+  const { cartItems, totalAmount } = useSelector((state) => state.cart);
 
-  const {cartItems, totalAmount} = useSelector((state)=>state.cart)
-
-  const totalQty = cartItems.reduce((total, item)=> total + item.qty, 0)
+  const totalQty = cartItems.reduce((total, item) => total + item.qty, 0);
 
   return (
     <div>
@@ -48,21 +47,25 @@ const Navbar = () => {
                     Checkout
                   </NavLink>
 
-                  {/* Total price */}
-                  <span className="text-sky-300">
-                      ${totalAmount.toFixed(2)}
-                  </span>
-                  <NavLink
-                    to="/cart"
-                    className="rounded-md px-3 py-2 text-xl font-medium text-gray-300 hover:bg-white/5 hover:text-white"
-                  >
-                    🛒
-                    {
-                      totalQty > 0 && (
-                        <span className="text-black absolute top-2 bg-yellow-300 rounded-full p-1 text-sm">{totalQty}</span>
-                      )
-                    }
-                  </NavLink>
+                  <div className="flex items-center gap-6">
+                    {/* TOTAL PRICE */}
+                    <span className="text-sky-400 font-semibold text-lg">
+                      ₹ {totalAmount.toFixed(2)}
+                    </span>
+
+                    {/* CART ICON */}
+                    <NavLink
+                      to="/cart"
+                      className="relative text-xl text-gray-300 hover:text-white"
+                    >
+                      🛒
+                      {totalQty > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-yellow-300 text-black rounded-full px-2 text-xs font-bold">
+                          {totalQty}
+                        </span>
+                      )}
+                    </NavLink>
+                  </div>
                 </div>
               </div>
             </div>

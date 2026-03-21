@@ -5,7 +5,7 @@ import ProductList from './pages/ProductList'
 import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import Footer from './components/Footer'
-
+import "@fortawesome/fontawesome-free/css/all.min.css";
 const App = () => {
   return (
     <div>
